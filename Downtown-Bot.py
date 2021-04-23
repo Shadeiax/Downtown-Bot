@@ -2,6 +2,9 @@
 import discord
 from discord.ext import commands
 
+# Specify Token
+TOKEN = "TOKEN"
+
 # Bot prefix
 client = commands.Bot(command_prefix = ".")
 
@@ -24,4 +27,4 @@ async def invite(ctx):
 @client.event
 async def on_member_update(before, after):
     
-client.run('ODM0NDk4Mzk0ODQ0MTY4MjAz.YIBxMQ.8kdP181iHFlGOLLWIpXNBkCk_Tg')
+client.run('TOKEN')
