@@ -1,3 +1,3 @@
 # Downtown-Bot
-A bot for Relaxed Downtown!
-Read me coming soon!!
+
+An open-source bot made by LAX and YungBeatz for the popular Discord server Relaxed Downtown.  More information coming soon!
