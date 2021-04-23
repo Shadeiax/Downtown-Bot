@@ -2,9 +2,6 @@
 import discord
 from discord.ext import commands
 
-# Specify Token
-TOKEN = "TOKEN"
-
 # Bot prefix
 client = commands.Bot(command_prefix = ".")
 
@@ -24,18 +21,14 @@ async def invite(ctx):
     await ctx.send('The invite link to Relaxed Downtown is: https://discord.gg/NAhTTaaJuv')                         
 
 # VIP auto nickname
-@client.command(pass_context=True)
-async def chnick(ctx, member: discord.Member, nick):
-    await member.edit(nick=nick)
-    await ctx.send(f'Nickname was changed for {member.mention} ')
-
-
-# async def on_member_update(before, after):
-#     if str(before.roel) == 'Level 9':
-#         if str(after.role) == "VIP's"
+@client.event
+async def on_member_update(before, after):
+    if str(before.role) == 'Level 9':
+        if str(after.role) == "VIP's":
+            
+        
 
 
 
-
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.cnBtyNMeVTAJLfjwbmto7AJUvfg')
+client.run('TOKEN')
 
