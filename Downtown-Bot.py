@@ -32,5 +32,5 @@ async def invite(ctx):
 #     print("toprole")
 
 
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.xn6Z0cF6GAccRGvmk6y3K6WDWZw')
+client.run('TOKEN')
 
