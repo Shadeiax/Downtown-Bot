@@ -20,15 +20,17 @@ async def ping(ctx):
 async def invite(ctx):     
     await ctx.send('The invite link to Relaxed Downtown is: https://discord.gg/NAhTTaaJuv')                         
 
-# VIP auto nickname
-@client.event
-async def on_member_update(before, after):
-    if str(before.role) == 'Level 9':
-        if str(after.role) == "VIP's":
-            
-        
+# # VIP auto nickname
+# @client.event
+# async def on_member_update(before, after):
+#     if str(before.role) == 'Level 9':
+#         if str(after.role) == "VIP's":
+
+# @client.command()
+# async def toprole(ctx, user: discord.Member):
+#     toprole = toprole
+#     print("toprole")
 
 
-
-client.run('TOKEN')
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.xn6Z0cF6GAccRGvmk6y3K6WDWZw')
 
