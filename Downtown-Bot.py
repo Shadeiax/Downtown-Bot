@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Import librarys
 import discord
 from discord.ext import commands
@@ -20,17 +21,49 @@ async def ping(ctx):
 async def invite(ctx):     
     await ctx.send('The invite link to Relaxed Downtown is: https://discord.gg/NAhTTaaJuv')                         
 
-# # VIP auto nickname
-# @client.event
+# VIP auto nickname
+@client.command(pass_context=True)
+async def chnick(ctx, member: discord.Member, nick):
+    await member.edit(nick=nick)
+    await ctx.send(f'Nickname was changed for {member.mention} ')
+
+
 # async def on_member_update(before, after):
-#     if str(before.role) == 'Level 9':
-#         if str(after.role) == "VIP's":
-
-# @client.command()
-# async def toprole(ctx, user: discord.Member):
-#     toprole = toprole
-#     print("toprole")
+#     if str(before.roel) == 'Level 9':
+#         if str(after.role) == "VIP's"
 
 
-client.run('TOKEN')
 
+
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.cnBtyNMeVTAJLfjwbmto7AJUvfg')
+=======
+# Import librarys
+import discord
+from discord.ext import commands
+
+# Specify Token
+TOKEN = "TOKEN"
+
+# Bot prefix
+client = commands.Bot(command_prefix = ".")
+
+# Print 'Bot is ready.' in command line
+@client.event
+async def on_ready():
+    print('The bot is ready.')
+
+# Ping/ms command
+@client.command(aliases=['ms'])
+async def ping(ctx):
+    await ctx.send(f'The bot has {round(client.latency * 1000)}ms ping.')
+
+# Invite link command
+@client.command()
+async def invite(ctx):     
+    await ctx.send('The invite link to Relaxed Downtown is: https://discord.gg/NAhTTaaJuv')                         
+
+@client.event
+async def on_member_update(before, after):
+    
+client.run(TOKEN)
+>>>>>>> eca63ecaa018f76e1facb88cab541934dfe5de09
