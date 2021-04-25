@@ -21,9 +21,14 @@ async def invite(ctx):
 
 @client.event
 async def on_member_update(before, after):
-    role = after.guild.get_role('834942375377764352')
+    role = after.guild.get_role(834942375377764352)
     if role in after.roles and role not in before.roles:
+        print(role, before.roles, after.roles)
         after.edit(nick=f"🌟 {after.nick}")
 
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.IEgSj4wfn7J8GqOfFgrcgdI1tpc')
+
+
+
+
+client.run('TOKEN')
 
