@@ -6,6 +6,6 @@ An open-source bot made by LAX and YungBeatz!  Invite it to your server using th
 
 Bot Invite: https://discord.com/api/oauth2/authorize?client_id=834846536910897193&permissions=8&scope=bot
 
-Server Invite:
+Server Invite: https://discord.gg/NAhTTaaJuv
 
 Website: https://relaxed-downtown.github.io 
