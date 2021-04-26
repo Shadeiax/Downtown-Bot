@@ -30,5 +30,5 @@ async def on_member_update(before, after):
 
 
 
-client.run('TOKEN')
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.vQjub7hnUbhXRAdzzrglXqBKvVs')
 
