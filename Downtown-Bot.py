@@ -84,4 +84,4 @@ async def on_member_update(before, after, guild):
     if role in after.roles and role not in before.roles:
         await after.edit(nick=f"🌟 {after.nick}")
 
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.r0qRBcEbPGh4MRSGlJZO1PfgnTU')
+client.run('TOKEN')
