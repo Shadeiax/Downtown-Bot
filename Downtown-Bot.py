@@ -20,15 +20,11 @@ async def invite(ctx):
     await ctx.send('The invite link to Relaxed Downtown is: https://discord.gg/NAhTTaaJuv')
     print('Invite command has executed')
 @client.event
-async def on_member_update(before, after):
+async def on_member_update(before, after, guild):
     role = after.guild.get_role(834942375377764352)
+    print('role, before.roles, after.roles')
     if role in after.roles and role not in before.roles:
-        after.edit(nick=f"(star emoji) {after.nick}")
-
-@client.command(pass_context=True)
-async def chnick(ctx, member: discord.Member, nick):
-        await member.edit(nick=nick)
-
+        await after.edit(nick=f"🌟 {after.nick}")
 
 
 
