@@ -15,6 +15,7 @@ client.remove_command("help")
 @client.event
 async def on_ready():
     print('The bot is ready.')
+   
 
 async def ch_pr():
     await client.wait_until_ready()
@@ -32,7 +33,11 @@ async def ch_pr():
 # Ping/ms command
 @client.command(aliases=['ms'])
 async def ping(ctx):
-    await ctx.send(f'The bot has {round(client.latency * 1000)}ms ping.')
+    em = discord.Embed(title="Ping", description=f"The bot's ping is currently `{round(client.latency * 1000)}ms`", color=discord.Colour.purple())
+    
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    
+    await ctx.send(embed=em)
     print('Ping/ms command has executed')
 
 # Invite link command
@@ -47,14 +52,29 @@ async def invite(ctx):
 
 # Kick command
 @client.command()
+@commands.has_permission(kick_members = True)
 async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
+    
+    em = discord.Embed(title="Member Kicked", description=f"{member} was kick for {reason}", color=discord.Colour.purple())
+    
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    
+    await ctx.send(embed=em)
+    
     print('Kick command has executed')
 
 # Ban command
 @client.command()
+@commands.has_permission(ban_members = True)
 async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
+    
+    em = discord.Embed(title="Member Banned", description=f"{member} was kick for {reason}", color=discord.Colour.purple())
+    
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    
+    await ctx.send(embed=em)
     print('Ban command has executed')
 
 # Help command
@@ -65,6 +85,7 @@ async def help(ctx):
     
     em.add_field(name="Moderation", value="kick, ban")
     em.add_field(name="Fun", value="invite, ping" )
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
     
     await ctx.send(embed=em)
     print('Help command has executed')
@@ -75,7 +96,8 @@ async def kick(ctx):
     em = discord.Embed(title = "Kick", description="Kicks a member from the guild", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.kick <member> [reason]`")
-
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    
     await ctx.send(embed=em)
     print("Help kick command has executed")
 
@@ -85,6 +107,7 @@ async def ban(ctx):
     em = discord.Embed(title = "Ban", description="Bans a member from the guild", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.ban <member> [reason]`")
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
     await ctx.send(embed=em)
     print("Help ban command has executed")
@@ -95,6 +118,7 @@ async def ping(ctx):
     em = discord.Embed(title = "Ping/ms", description="Displays the current ping of the bot", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.ping/ms`")
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
     await ctx.send(embed=em)
     print("Help ping/ms command has executed")
@@ -105,9 +129,12 @@ async def invite(ctx):
     em = discord.Embed(title = "Invite/link", description="Displays the invite link of Downtown Bot and Relaxed Downtown", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.invite/link`")
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
     await ctx.send(embed=em)
     print("Help invite/link command has executed")
+
+# Error haldling
 
 
 
@@ -120,9 +147,5 @@ async def invite(ctx):
 #     if role in after.roles and role not in before.roles:
 #         await after.edit(nick=f"🌟 {after.nick}")
 
-<<<<<<< HEAD
 client.loop.create_task(ch_pr())
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.AqCnQgMx7U7esXlhebz6QTzky9k')
-=======
-client.run('TOKEN')
->>>>>>> 44c3d5f9329fd1959f9d76786a8d3e68cfa5e0c5
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.ryiXcBVxO1meYuxiZ1BPYqW7qtc')
