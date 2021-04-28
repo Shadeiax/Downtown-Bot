@@ -120,5 +120,9 @@ async def invite(ctx):
 #     if role in after.roles and role not in before.roles:
 #         await after.edit(nick=f"🌟 {after.nick}")
 
+<<<<<<< HEAD
 client.loop.create_task(ch_pr())
 client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.AqCnQgMx7U7esXlhebz6QTzky9k')
+=======
+client.run('TOKEN')
+>>>>>>> 44c3d5f9329fd1959f9d76786a8d3e68cfa5e0c5
