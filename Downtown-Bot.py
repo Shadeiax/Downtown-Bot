@@ -52,7 +52,6 @@ async def invite(ctx):
 
 # Kick command
 @client.command()
-@commands.has_permission(kick_members = True)
 async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
     
@@ -66,7 +65,6 @@ async def kick(ctx, member : discord.Member, *, reason=None):
 
 # Ban command
 @client.command()
-@commands.has_permission(ban_members = True)
 async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
     
@@ -148,4 +146,4 @@ async def invite(ctx):
 #         await after.edit(nick=f"🌟 {after.nick}")
 
 client.loop.create_task(ch_pr())
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.ryiXcBVxO1meYuxiZ1BPYqW7qtc')
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.lIcpQGl7CgbluCxrQzoy7ip5Z2Q')
