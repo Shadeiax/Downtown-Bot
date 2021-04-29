@@ -4,6 +4,7 @@ from discord.ext import commands
 import random
 import asyncio
 import json
+import os
 
 # Bot prefix
 client = commands.Bot(command_prefix = ".")
@@ -14,9 +15,22 @@ client.remove_command("help")
 # Print 'Bot is ready.' in command line
 @client.event
 async def on_ready():
-    print('The bot is ready.')
-   
+    print('The bot is ready')
 
+# # (RD Only) VIP role 🌟
+# @client.event
+# async def on_member_update(before, after, guild):
+#     role = after.guild.get_role(834942375377764352)
+#     print(role, before.roles, after.roles)
+#     if role in after.roles and role not in before.roles:
+#         await after.edit(nick=f"🌟 {after.nick}")
+
+# How to import cogs
+# for filename in os.listdir('./cogs'):
+#     if filename.endswith('.py'):
+#         client.load_extension(f'cogs.{filename[:-3]}')
+
+# Changing status
 async def ch_pr():
     await client.wait_until_ready()
     
@@ -39,16 +53,6 @@ async def ping(ctx):
     
     await ctx.send(embed=em)
     print('Ping/ms command has executed')
-
-# change keyword here
-# keyword = "RESPOND"
-
-# @client.event
-# async def on_message(message):
-#       message_text = message.content.strip().upper()
-#       if keyword in message_text:
-#             # do something here, change to whatever you want
-#             await client.send_message(message.channel, "'{}' was said".format(keyword))
 
 # Invite link command
 @client.command(aliases=['link'])
@@ -101,6 +105,66 @@ async def ban(ctx, member : discord.Member, *, reason=None):
 #             return
     
 #     await ctx.send(member+" was not found")
+
+# About command
+@client.command()
+async def about(ctx):
+    em = discord.Embed(title = "About", description="", color=discord.Colour.purple())
+
+    em.add_field(name="**Library**", value="discord.py")
+    em.add_field(name="**Creators**", value="carter.py#0001, (っ◔◡◔)っʏᴜɴɢʙᴇᴀᴛᴢ#3040")    
+
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+
+    await ctx.send(embed=em)
+    print("About command has executed")
+
+# Workinprogress
+@client.command(aliases=['wip'])
+async def workinprogress(ctx):
+    em = discord.Embed(title = "Work In Progress", description="", color=discord.Colour.purple())
+
+    em.add_field(name="**Error Handling**", value="Add an error handling system that displays why a command is not working", inline=False)
+    em.add_field(name="**Website Dashboard**", value="Create a website dashboard to custmize the bot's expirence", inline=False)
+    em.add_field(name="**Fun Commands**", value="**DONE:** Add fun commands like .8ball and others", inline=False)    
+
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+
+    await ctx.send(embed=em)
+    print("Workinprogress command has executed")
+
+# 8ball Command
+@client.command(aliases=['8ball'])
+async def _8ball(ctx, *, question):
+    responses = [
+                    'As I see it, yes.',
+                    'Ask again later.',
+                    'Better not tell you now.',
+                    'Cannot predict now.',
+                    'Concentrate and ask again.',
+                    'Don’t count on it.',
+                    'It is certain.',
+                    'It is decidedly so.',
+                    'Most likely.',
+                    'My reply is no.',
+                    'My sources say no.',
+                    'Outlook not so good.',
+                    'Outlook good.',
+                    'Reply hazy, try again.',
+                    'Signs point to yes.',
+                    'Very doubtful.',
+                    'Without a doubt.',
+                    'Yes.',
+                    'Yes – definitely.',
+                    'You may rely on it.']
+    em = discord.Embed(title = "8ball", description="", color=discord.Colour.purple())
+
+    em.add_field(name="**Question**", value=f"{question}", inline=False)
+    em.add_field(name="**Answer**", value=f"{random.choice(responses)}", inline=False)
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+
+    await ctx.send(embed=em)
+    print('8ball command executed')
 
 
 # Help command
@@ -194,75 +258,5 @@ async def workinprogress(ctx):
     await ctx.send(embed=em)
     print("Help workinprogress/wip command has executed")
 
-# About command
-
-@client.command()
-async def about(ctx):
-    em = discord.Embed(title = "About", description="", color=discord.Colour.purple())
-
-    em.add_field(name="**Library**", value="discord.py")
-    em.add_field(name="**Creators**", value="carter.py#0001, (っ◔◡◔)っʏᴜɴɢʙᴇᴀᴛᴢ#3040")    
-
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-    await ctx.send(embed=em)
-    print("About command has executed")
-
-# Workinprogress
-@client.command(aliases=['wip'])
-async def workinprogress(ctx):
-    em = discord.Embed(title = "Work In Progress", description="", color=discord.Colour.purple())
-
-    em.add_field(name="**Error Handling**", value="Add an error handling system that displays why a command is not working", inline=False)
-    em.add_field(name="**Website Dashboard**", value="Create a website dashboard to custmize the bot's expirence", inline=False)
-    em.add_field(name="**Fun Commands**", value="**DONE:** Add fun commands like .8ball and others", inline=False)    
-
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-    await ctx.send(embed=em)
-    print("Workinprogress command has executed")
-
-@client.command(aliases=['8ball'])
-async def _8ball(ctx, *, question):
-    responses = [
-                    'As I see it, yes.',
-                    'Ask again later.',
-                    'Better not tell you now.',
-                    'Cannot predict now.',
-                    'Concentrate and ask again.',
-                    'Don’t count on it.',
-                    'It is certain.',
-                    'It is decidedly so.',
-                    'Most likely.',
-                    'My reply is no.',
-                    'My sources say no.',
-                    'Outlook not so good.',
-                    'Outlook good.',
-                    'Reply hazy, try again.',
-                    'Signs point to yes.',
-                    'Very doubtful.',
-                    'Without a doubt.',
-                    'Yes.',
-                    'Yes – definitely.',
-                    'You may rely on it.']
-    em = discord.Embed(title = "8ball", description="", color=discord.Colour.purple())
-
-    em.add_field(name="**Question**", value=f"{question}", inline=False)
-    em.add_field(name="**Answer**", value=f"{random.choice(responses)}", inline=False)
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-    await ctx.send(embed=em)
-    print('8ball command executed')
-
-
-
-# # (RD Only) VIP role 🌟
-# @client.event
-# async def on_member_update(before, after, guild):
-#     role = after.guild.get_role(834942375377764352)
-#     print(role, before.roles, after.roles)
-#     if role in after.roles and role not in before.roles:
-#         await after.edit(nick=f"🌟 {after.nick}")
-
 client.loop.create_task(ch_pr())
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.jnKLujGhh-nRScwy_SJQZopmP3A')
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.qtGdDPtbBPI12Dx_r0EgNe_ytW8')
