@@ -20,7 +20,7 @@ async def on_ready():
 async def ch_pr():
     await client.wait_until_ready()
     
-    statuses = [f"on {len(client.guilds)} servers | .help", "made using discord.py", "www.downtownbot.ml",f"{round(client.latency * 1000)}ms ping" ]
+    statuses = [f"on {len(client.guilds)} servers | .help", "made using discord.py", "www.relaxed-downtown.ml",f"{round(client.latency * 1000)}ms ping" ]
 
     while not client.is_closed():
 
@@ -53,7 +53,7 @@ async def on_message(message):
 # Invite link command
 @client.command(aliases=['link'])
 async def invite(ctx):
-    em = discord.Embed(title="Invite Link", description="The invite link for the Downtown Bot can be accessed at https://www.downtownbot.ml", color=discord.Colour.purple())
+    em = discord.Embed(title="Invite Link", description="The invite link for the Downtown Bot can be accessed at https://www.relaxed-downtown.ml", color=discord.Colour.purple())
     
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
     
@@ -247,4 +247,4 @@ async def _8ball(ctx, *, question):
 #         await after.edit(nick=f"🌟 {after.nick}")
 
 client.loop.create_task(ch_pr())
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.nSR-AlX696BmJT6CNGqS2Ih2Ba4')
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.M8UT35vmz99Q7pbeQxFsaSfXZdQ')
