@@ -41,14 +41,14 @@ async def ping(ctx):
     print('Ping/ms command has executed')
 
 # change keyword here
-keyword = "RESPOND"
+# keyword = "RESPOND"
 
-@bot.event
-async def on_message(message):
-      message_text = message.content.strip().upper()
-      if keyword in message_text:
-            # do something here, change to whatever you want
-            await bot.send_message(message.channel, "'{}' was said".format(keyword))
+# @client.event
+# async def on_message(message):
+#       message_text = message.content.strip().upper()
+#       if keyword in message_text:
+#             # do something here, change to whatever you want
+#             await client.send_message(message.channel, "'{}' was said".format(keyword))
 
 # Invite link command
 @client.command(aliases=['link'])
@@ -84,6 +84,24 @@ async def ban(ctx, member : discord.Member, *, reason=None):
     
     await ctx.send(embed=em)
     print('Ban command has executed')
+
+# Unban command
+# @client.command(aliases=['ub'])
+# @commands.has_permissions(ban_members=True)
+# async def unban(ctx, *, member):
+#     banned_users = await ctx.guild.bans()
+#     member_name, member_disc, = member.split('#')
+
+#     for banned_entry in banned_users: 
+#         user = banned_entry.user
+
+#         if (user.name, user.discriminator)==(member_name, member_disc):
+#             await ctx.guild.unban(user)
+#             await ctx.send(memmber_name +" has been unbanned")
+#             return
+    
+#     await ctx.send(member+" was not found")
+
 
 # Help command
 @client.group(invoke_without_command=True)
@@ -247,4 +265,4 @@ async def _8ball(ctx, *, question):
 #         await after.edit(nick=f"🌟 {after.nick}")
 
 client.loop.create_task(ch_pr())
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.M8UT35vmz99Q7pbeQxFsaSfXZdQ')
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.jnKLujGhh-nRScwy_SJQZopmP3A')
