@@ -40,6 +40,16 @@ async def ping(ctx):
     await ctx.send(embed=em)
     print('Ping/ms command has executed')
 
+# change keyword here
+keyword = "RESPOND"
+
+@bot.event
+async def on_message(message):
+      message_text = message.content.strip().upper()
+      if keyword in message_text:
+            # do something here, change to whatever you want
+            await bot.send_message(message.channel, "'{}' was said".format(keyword))
+
 # Invite link command
 @client.command(aliases=['link'])
 async def invite(ctx):
