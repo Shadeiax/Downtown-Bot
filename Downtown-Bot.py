@@ -30,6 +30,25 @@ async def on_ready():
 #     if filename.endswith('.py'):
 #         client.load_extension(f'cogs.{filename[:-3]}')
 
+# Suicide prevention
+@client.event
+async def on_message(message):
+    ...
+    bad_words = ["suicide", "Suicide", "i want to kill myself", "i want to die", "I want to die", "I want to kill myself"]
+
+    for word in bad_words:
+        if message.content.count(word) > 0:
+            em = discord.Embed(title="Helplines", description="This bot has automatically detected a keyword related to suicide Please listen to me. Your life is important. I understand you don't feel like you matter right know, but I can tell you with 100% confidence that you MATTER! Please just give the suicide prevention hotline just one more chance.", color=discord.Colour.purple())
+
+            em.add_field(name="**U.S.**", value="Call (800) 273-8255 or Text HOME to 741741", inline=False)
+            em.add_field(name="**U.K.**", value="Call 116-123 or Text SHOUT to 85258", inline=False)
+            em.add_field(name="**Canada**", value="Call (833) 456-4566 Text a message to 45645", inline=False)
+            em.add_field(name="**Switzerland**", value="Call 143", inline=False)
+            em.add_field(name="**Germany**", value="Call 08001810771", inline=False)
+            em.add_field(name="**Didnt find your Country above?**", value="Didnt find your Country above? DM carter.py#0001 for suggestions", inline=False)
+            em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        
+            await message.channel.send(embed=em)
 # Changing status
 async def ch_pr():
     await client.wait_until_ready()
@@ -257,6 +276,9 @@ async def workinprogress(ctx):
 
     await ctx.send(embed=em)
     print("Help workinprogress/wip command has executed")
+
+
+
 
 client.loop.create_task(ch_pr())
 client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.xo5J2Zh_fMoVlfIJ7lrNHT1vQc0')
