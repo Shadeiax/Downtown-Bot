@@ -16,6 +16,7 @@ client.remove_command("help")
 @client.event
 async def on_ready():
     print('The bot is ready')
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=".help"))
 
 # # (RD Only) VIP role 🌟
 # @client.event
@@ -25,51 +26,13 @@ async def on_ready():
 #     if role in after.roles and role not in before.roles:
 #         await after.edit(nick=f"🌟 {after.nick}")
 
-# How to import cogs
-# for filename in os.listdir('./cogs'):
-#     if filename.endswith('.py'):
-#         client.load_extension(f'cogs.{filename[:-3]}')
-
-# Suicide prevention
-@client.event
-async def on_message(message):
-    ...
-    bad_words = ["suicide", "Suicide", "i want to kill myself", "i want to die", "I want to die", "I want to kill myself"]
-
-    for word in bad_words:
-        if message.content.count(word) > 0:
-            em = discord.Embed(title="Helplines", description="This bot has automatically detected a keyword related to suicide Please listen to me. Your life is important. I understand you don't feel like you matter right know, but I can tell you with 100% confidence that you MATTER! Please just give the suicide prevention hotline just one more chance.", color=discord.Colour.purple())
-
-            em.add_field(name="**U.S.**", value="Call (800) 273-8255 or Text HOME to 741741", inline=False)
-            em.add_field(name="**U.K.**", value="Call 116-123 or Text SHOUT to 85258", inline=False)
-            em.add_field(name="**Canada**", value="Call (833) 456-4566 Text a message to 45645", inline=False)
-            em.add_field(name="**Switzerland**", value="Call 143", inline=False)
-            em.add_field(name="**Germany**", value="Call 08001810771", inline=False)
-            em.add_field(name="**Didnt find your Country above?**", value="Didnt find your Country above? DM carter.py#0001 for suggestions", inline=False)
-            em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-        
-            await message.channel.send(embed=em)
-# Changing status
-async def ch_pr():
-    await client.wait_until_ready()
-    
-    statuses = [f"on {len(client.guilds)} servers | .help", "made using discord.py", "www.relaxed-downtown.ml",f"{round(client.latency * 1000)}ms ping" ]
-
-    while not client.is_closed():
-
-        status = random.choice(statuses)
-        
-        await client.change_presence(activity=discord.Game(name=status))
-
-        await asyncio.sleep(20)
-
 # Ping/ms command
 @client.command(aliases=['ms'])
 async def ping(ctx):
     em = discord.Embed(title="Ping", description=f"The bot's ping is currently `{round(client.latency * 1000)}ms`", color=discord.Colour.purple())
-    
+
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-    
+
     await ctx.send(embed=em)
     print('Ping/ms command has executed')
 
@@ -77,9 +40,9 @@ async def ping(ctx):
 @client.command(aliases=['link'])
 async def invite(ctx):
     em = discord.Embed(title="Invite Link", description="The invite link for the Downtown Bot can be accessed at https://www.relaxed-downtown.ml", color=discord.Colour.purple())
-    
+
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-    
+
     await ctx.send(embed=em)
     print('Invite/link command has executed')
 
@@ -87,43 +50,26 @@ async def invite(ctx):
 @client.command()
 async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
-    
+
     em = discord.Embed(title="Member Kicked", description=f"{member} was kick for {reason}", color=discord.Colour.purple())
-    
+
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-    
+
     await ctx.send(embed=em)
-    
+
     print('Kick command has executed')
 
 # Ban command
 @client.command()
 async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
-    
+
     em = discord.Embed(title="Member Banned", description=f"{member} was kick for {reason}", color=discord.Colour.purple())
-    
+
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-    
+
     await ctx.send(embed=em)
     print('Ban command has executed')
-
-# Unban command
-# @client.command(aliases=['ub'])
-# @commands.has_permissions(ban_members=True)
-# async def unban(ctx, *, member):
-#     banned_users = await ctx.guild.bans()
-#     member_name, member_disc, = member.split('#')
-
-#     for banned_entry in banned_users: 
-#         user = banned_entry.user
-
-#         if (user.name, user.discriminator)==(member_name, member_disc):
-#             await ctx.guild.unban(user)
-#             await ctx.send(memmber_name +" has been unbanned")
-#             return
-    
-#     await ctx.send(member+" was not found")
 
 # About command
 @client.command()
@@ -131,7 +77,7 @@ async def about(ctx):
     em = discord.Embed(title = "About", description="", color=discord.Colour.purple())
 
     em.add_field(name="**Library**", value="discord.py")
-    em.add_field(name="**Creators**", value="carter.py#0001, (っ◔◡◔)っʏᴜɴɢʙᴇᴀᴛᴢ#3040")    
+    em.add_field(name="**Creators**", value="carter.py#0001, (っ◔◡◔)っʏᴜɴɢʙᴇᴀᴛᴢ#3040")
 
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
@@ -145,7 +91,7 @@ async def workinprogress(ctx):
 
     em.add_field(name="**Error Handling**", value="Add an error handling system that displays why a command is not working", inline=False)
     em.add_field(name="**Website Dashboard**", value="Create a website dashboard to custmize the bot's expirence", inline=False)
-    em.add_field(name="**Fun Commands**", value="**DONE:** Add fun commands like .8ball and others", inline=False)    
+    em.add_field(name="**Fun Commands**", value="**DONE:** Add fun commands like .8ball and others", inline=False)
 
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
@@ -176,6 +122,7 @@ async def _8ball(ctx, *, question):
                     'Yes.',
                     'Yes – definitely.',
                     'You may rely on it.']
+
     em = discord.Embed(title = "8ball", description="", color=discord.Colour.purple())
 
     em.add_field(name="**Question**", value=f"{question}", inline=False)
@@ -189,25 +136,25 @@ async def _8ball(ctx, *, question):
 # Help command
 @client.group(invoke_without_command=True)
 async def help(ctx):
-    
+
     em = discord.Embed(title="Help", description="Use .help <command> for extended information on a command", color=discord.Colour.purple())
-    
+
     em.add_field(name="Moderation", value="kick, ban")
     em.add_field(name="Fun", value="8ball" )
     em.add_field(name="Misc", value="invite, ping, about, workinprogress" )
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-    
+
     await ctx.send(embed=em)
     print('Help command has executed')
 
-# Help kick command 
+# Help kick command
 @help.command()
 async def kick(ctx):
     em = discord.Embed(title = "Kick", description="Kicks a member from the guild", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.kick <member> [reason]`")
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-    
+
     await ctx.send(embed=em)
     print("Help kick command has executed")
 
@@ -277,8 +224,25 @@ async def workinprogress(ctx):
     await ctx.send(embed=em)
     print("Help workinprogress/wip command has executed")
 
-
-
-
-client.loop.create_task(ch_pr())
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.xo5J2Zh_fMoVlfIJ7lrNHT1vQc0')
+# Suicide prevention
+# @client.event
+# async def on_message(message):
+#     ...
+#     bad_words = ["suicide", "Suicide", "i want to kill myself", "i want to die", "I want to die", "I want to kill myself"]
+#
+#     for word in bad_words:
+#         if message.content.count(word) > 0:
+#             em = discord.Embed(title="Helplines", description="This bot has automatically detected a keyword related to suicide Please listen to me. Your life is important. I understand you don't feel like you matter right know, but I can tell you with 100% confidence that you MATTER! Please just give the suicide prevention hotline just one more chance.", color=discord.Colour.purple())
+#
+#             em.add_field(name="**U.S.**", value="Call (800) 273-8255 or Text HOME to 741741", inline=False)
+#             em.add_field(name="**U.K.**", value="Call 116-123 or Text SHOUT to 85258", inline=False)
+#             em.add_field(name="**Canada**", value="Call (833) 456-4566 Text a message to 45645", inline=False)
+#             em.add_field(name="**Switzerland**", value="Call 143", inline=False)
+#             em.add_field(name="**Germany**", value="Call 08001810771", inline=False)
+#             em.add_field(name="**Didnt find your Country above?**", value="Didnt find your Country above? DM carter.py#0001 for suggestions", inline=False)
+#             em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+#
+#             await message.channel.send(embed=em)
+#     ...
+# Make the client run
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.VL1R-S7y2Vbqe9l8wpgCP9kQ8Pk')
