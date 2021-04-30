@@ -259,4 +259,4 @@ async def workinprogress(ctx):
     print("Help workinprogress/wip command has executed")
 
 client.loop.create_task(ch_pr())
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.qtGdDPtbBPI12Dx_r0EgNe_ytW8')
+client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.xo5J2Zh_fMoVlfIJ7lrNHT1vQc0')
