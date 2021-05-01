@@ -132,6 +132,25 @@ async def _8ball(ctx, *, question):
     await ctx.send(embed=em)
     print('8ball command executed')
 
+# Coinflip command
+@client.command(aliases=['cf'])
+async def coinflip(ctx, *, question):
+    responses = [
+                    'Heads',
+                    'Tails']
+
+    em = discord.Embed(title = "Coinflip", description="", color=discord.Colour.purple())
+
+    em.add_field(name="**Prediction**", value=f"{question}", inline=False)
+    em.add_field(name="**Outcome**", value=f"{random.choice(responses)}", inline=False)
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+
+    await ctx.send(embed=em)
+    print('Coinflip command executed')
+
+
+
+
 
 # Help command
 @client.group(invoke_without_command=True)
@@ -140,7 +159,7 @@ async def help(ctx):
     em = discord.Embed(title="Help", description="Use .help <command> for extended information on a command", color=discord.Colour.purple())
 
     em.add_field(name="Moderation", value="kick, ban")
-    em.add_field(name="Fun", value="8ball" )
+    em.add_field(name="Fun", value="8ball, coinflip" )
     em.add_field(name="Misc", value="invite, ping, about, workinprogress" )
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
@@ -223,6 +242,17 @@ async def workinprogress(ctx):
 
     await ctx.send(embed=em)
     print("Help workinprogress/wip command has executed")
+
+# Help coinflip
+@help.command(aliases=['cf'])
+async def coinflip(ctx):
+    em = discord.Embed(title = "Coinflip", description="Displays a randomized coinflip", color=discord.Colour.purple())
+
+    em.add_field(name="**Syntax**", value="`.coinflip/cf <prediction>`")
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+
+    await ctx.send(embed=em)
+    print("Help coinflip/cf command has executed")
 
 # Suicide prevention
 # @client.event
