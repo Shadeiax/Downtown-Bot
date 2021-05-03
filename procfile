@@ -1,1 +1,1 @@
-worker: python bot/main.py
+worker: Downtown-Bot/Downtown-Bot.py
