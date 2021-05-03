@@ -196,6 +196,13 @@ async def lizard(ctx):
     await ctx.send(embed=em)
     print('Lizard command executed')
 
+# # Playlist command
+# @client.command()
+# async def playlist(ctx):
+#     em = discord.Embed(title="Playlist", description="", color=discord.Colour.purple())
+#
+#     em.add_field(name='Spotify', value='')
+
 # Help command
 @client.group(invoke_without_command=True)
 async def help(ctx):
