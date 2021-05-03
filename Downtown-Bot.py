@@ -350,5 +350,7 @@ async def lizard(ctx):
 #     else:
 #         return
 
+with open('token.txt') as f:
+    TOKEN = f.readline()
 # Make the client run
-client.run('ODM0ODQ2NTM2OTEwODk3MTkz.YIG1bQ.VL1R-S7y2Vbqe9l8wpgCP9kQ8Pk')
+client.run(TOKEN)
