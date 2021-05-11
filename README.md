@@ -2,7 +2,7 @@
 
 An open-source bot made by LAX and YungBeatz!  Invite it to your server using the link on our website!
 
-#Links
+# Links
 
 Bot Invite: https://discord.com/api/oauth2/authorize?client_id=834846536910897193&permissions=8&scope=bot
 
