@@ -62,5 +62,22 @@ class Image(commands.Cog):
 
         await ctx.send(embed=em)
 
+    @commands.command()
+    async def cat(self, ctx):
+        responses = [
+                        'https://icatcare.org/app/uploads/2018/06/Layer-1704-1200x630.jpg',
+                        'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png',
+                        'https://cdn.mos.cms.futurecdn.net/VSy6kJDNq2pSXsCzb6cvYF.jpg',
+                        'https://c.files.bbci.co.uk/12A9B/production/_111434467_gettyimages-1143489763.jpg',
+                        'https://static.scientificamerican.com/sciam/cache/file/92E141F8-36E4-4331-BB2EE42AC8674DD3_source.jpg',
+                        'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg'
+                                                ]
+
+        em = discord.Embed(title = "Cat", description="", color=discord.Colour.purple())
+
+        em.set_image(url=f"{random.choice(responses)}")
+
+        await ctx.send(embed=em)
+
 def setup(client):
     client.add_cog(Image(client))
