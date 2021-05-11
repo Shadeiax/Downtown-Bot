@@ -8,14 +8,21 @@ import os
 import nacl
 import youtube_dl
 from discord import FFmpegPCMAudio
+from discord.utils import get
 
+# Intents
 intents = discord.Intents.default()
 intents.members = True
 
 # Bot prefix
-client = commands.Bot(command_prefix = ".", intents=intents)
+client = commands.Bot(command_prefix = ".", intents=intents, case_insensitive=True)
 
-# Remove help
+# Cogs
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        client.load_extension(f'cogs.{filename[:-3]}')
+
+# Remove default help command
 client.remove_command("help")
 
 # Print 'Bot is ready.' in command line
@@ -24,6 +31,22 @@ async def on_ready():
     print('The bot is ready')
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=".help"))
 
+# Error handling
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        em = discord.Embed(title="Command Error", description="You do not have the required permissions to do that (`MissingPremissions`)", color=discord.Colour.purple())
+
+        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+
+        await ctx.send(embed=em)
+    elif isinstance(error, commands.MissingRequiredArgument):
+        em = discord.Embed(title="Command Error", description="You are missing a required argument (`MissingRequiredArgument`)", color=discord.Colour.purple())
+
+        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+
+        await ctx.send(embed=em)
+
 # (RD Only) VIP role 🌟
 @client.event
 async def on_member_update(before, after):
@@ -31,14 +54,29 @@ async def on_member_update(before, after):
     print(role, before.roles, after.roles, before.display_name, after.display_name)
     if role in after.roles and role not in before.roles:
         await after.edit(nick=f"🌟 {after.display_name}")
-
-# (RD Only) VIP auto DM 🌟
-@client.event
-async def on_member_update(before, after):
-    role = after.guild.get_role(795321686517874698)
-    print(role, before.roles, after.roles, before.display_name, after.display_name)
-    if role in after.roles and role not in before.roles:
         await after.send("```Hey! You! Yeah You! 😎\n\nLets go you just reached the VIP Status on Relaxed Downtown! 💜 \nAnd Yes we have some Premium features on Relaxed Downtown for VIP users: \n \n-Hidden VIP Chats ⭐ (You can find the VIP category under the Minigames category) \n \n-You can now request a nickname! (The text channel for that can be found in the Support category) 🦋\n \n-Question Of The Day :question: (Can be found in the Off-Topic Category) \n \n-Color Roles (can be found in the category User info) ```")
+
+@client.event
+async def on_member_join(member):
+    mention=member.mention
+    guild=member.guild
+
+    em = discord.Embed(title=":warning:WARNING READ BEFORE JOINING THE SERVER!:warning:", description="Always be careful what data about yourself you disclose! There are bad people everywhere who pretend to be users of your age to harm you! Never give your exact location! And if you don't feel comfortable introducing yourself in our introduction channel then you don't have to do it! \n **The Downtown Team Is NOT Liable!**", color=discord.Colour.purple())
+
+    em.set_thumbnail(url="http://relaxed-downtown.ml/img/ezgif-4-08d6e14f8d30.gif")
+
+    await member.send(embed=em)
+
+# @client.event
+# async def on_member_update(before, after):
+#     this_member = after
+#     this_guild = this_member.guild
+#     this_role = get(this_guild.roles, id=int(840950830705934358))
+#     role = after.guild.get_role(795321686517874698)
+#     print(role, before.roles, after.roles, before.display_name, after.display_name)
+#     if role in after.roles and role not in before.roles:
+#         await after.edit(nick=f"🌟 {after.display_name}")
+#         await this_member.add_roles(this_role)
 
 # Ping/ms command
 @client.command(aliases=['ms'])
@@ -49,68 +87,6 @@ async def ping(ctx):
 
     await ctx.send(embed=em)
     print('Ping/ms command has executed')
-
-# Invite link command
-@client.command(aliases=['link'])
-async def invite(ctx):
-    em = discord.Embed(title="Invite Link", description="The invite link for the Downtown Bot can be accessed at https://www.relaxed-downtown.ml", color=discord.Colour.purple())
-
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-    await ctx.send(embed=em)
-    print('Invite/link command has executed')
-
-# Kick command
-@client.command()
-async def kick(ctx, member : discord.Member, *, reason=None):
-    await member.kick(reason=reason)
-
-    em = discord.Embed(title="Member Kicked", description=f"{member} was kicked for {reason}", color=discord.Colour.purple())
-
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-    await ctx.send(embed=em)
-
-    print('Kick command has executed')
-
-# Ban command
-@client.command()
-async def ban(ctx, member : discord.Member, *, reason=None):
-    await member.ban(reason=reason)
-
-    em = discord.Embed(title="Member Banned", description=f"{member} was banned for {reason}", color=discord.Colour.purple())
-
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-    await ctx.send(embed=em)
-    print('Ban command has executed')
-
-# About command
-@client.command()
-async def about(ctx):
-    em = discord.Embed(title = "About", description="", color=discord.Colour.purple())
-
-    em.add_field(name="**Library**", value="discord.py")
-    em.add_field(name="**Creators**", value="carter.py#0001, (っ◔◡◔)っʏᴜɴɢʙᴇᴀᴛᴢ#3040")
-
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-    await ctx.send(embed=em)
-    print("About command has executed")
-
-# Workinprogress
-@client.command(aliases=['wip'])
-async def workinprogress(ctx):
-    em = discord.Embed(title = "Work In Progress", description="", color=discord.Colour.purple())
-
-    em.add_field(name="**Error Handling**", value="Add an error handling system that displays why a command is not working", inline=False)
-    em.add_field(name="**Website Dashboard**", value="Create a website dashboard to custmize the bot's expirence", inline=False)
-    em.add_field(name="**Fun Commands**", value="**DONE:** Add fun commands like .8ball and others", inline=False)
-
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-    await ctx.send(embed=em)
-    print("Workinprogress command has executed")
 
 # 8ball Command
 @client.command(aliases=['8ball'])
@@ -127,6 +103,7 @@ async def _8ball(ctx, *, question):
                     'Most likely.',
                     'My reply is no.',
                     'My sources say no.',
+                    'Outlook not so good.',
                     'Outlook not so good.',
                     'Outlook good.',
                     'Reply hazy, try again.',
@@ -148,89 +125,22 @@ async def _8ball(ctx, *, question):
 
 # Coinflip command
 @client.command(aliases=['cf'])
-async def coinflip(ctx, *, question):
+async def coinflip(ctx):
     responses = [
                     'Heads',
                     'Tails']
 
     em = discord.Embed(title = "Coinflip", description="", color=discord.Colour.purple())
 
-    em.add_field(name="**Prediction**", value=f"{question}", inline=False)
     em.add_field(name="**Outcome**", value=f"{random.choice(responses)}", inline=False)
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
     await ctx.send(embed=em)
     print('Coinflip command executed')
 
-# Dog command
-@client.command(aliases=['doge'])
-async def dog(ctx):
-    responses = [
-                    'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*',
-                    'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/dog_cool_summer_slideshow/1800x1200_dog_cool_summer_other.jpg',
-                    'https://i.guim.co.uk/img/media/fe1e34da640c5c56ed16f76ce6f994fa9343d09d/0_174_3408_2046/master/3408.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=0d3f33fb6aa6e0154b7713a00454c83d',
-                    'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=0.672xw:1.00xh;0.166xw,0&resize=640:*',
-                    'https://www.sciencemag.org/sites/default/files/styles/inline__450w__no_aspect/public/dogs_1280p_0.jpg?itok=h6VBayx-',
-                    'https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp'
-                                            ]
 
-    em = discord.Embed(title = "Dog", description="", color=discord.Colour.purple())
-
-    em.set_image(url=f"{random.choice(responses)}")
-
-    await ctx.send(embed=em)
-    print('Dog/doge command executed')
-
-# Amphibian command
-@client.command()
-async def lizard(ctx):
-    responses = [
-                    'https://cdn.discordapp.com/attachments/837804364990513183/838099013454397520/image0.jpg',
-                    'https://media.discordapp.net/attachments/837804364990513183/838099133189193728/image0.jpg?width=503&height=670',
-                    'https://animals.sandiegozoo.org/sites/default/files/2016-11/animals_hero_lizards.jpg',
-                    'https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGl6YXJkfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
-                    'https://cdn.britannica.com/37/125637-050-775F1B98/Agama.jpg',
-                    'https://static.scientificamerican.com/sciam/cache/file/35BB522C-1F80-4EA3-AD1A257F9B636908_source.jpg?w=590&h=800&47D6048D-D602-419B-B2B0A97B77D665FE'
-                                            ]
-
-    em = discord.Embed(title = "Lizard", description="", color=discord.Colour.purple())
-
-    em.set_image(url=f"{random.choice(responses)}")
-
-    await ctx.send(embed=em)
-    print('Lizard command executed')
-
-# Amphibian command
-@client.command()
-async def cat(ctx):
-    responses = [
-                    'https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png',
-                    'https://c.files.bbci.co.uk/12A9B/production/_111434467_gettyimages-1143489763.jpg',
-                    'https://static.scientificamerican.com/sciam/cache/file/92E141F8-36E4-4331-BB2EE42AC8674DD3_source.jpg',
-                    'https://icatcare.org/app/uploads/2018/06/Layer-1704-1920x840.jpg',
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMkEG43ZrAEgJtx9uicyjBXIZNeAogYlNYYC9JCPMCC2yYj6_FptQC1uPYIVHaglnWy2E&usqp=CAU',
-                    'https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9'
-                                            ]
-
-    em = discord.Embed(title = "Cat", description="", color=discord.Colour.purple())
-
-    em.set_image(url=f"{random.choice(responses)}")
-
-    await ctx.send(embed=em)
-    print('Cat command executed')
-
-# Playlist command
-@client.command()
-async def playlist(ctx):
-    em = discord.Embed(title="Playlist", description="", color=discord.Colour.purple())
-
-    em.add_field(name='Spotify', value='Listen to the offical Relaxed Downtown playlist on Spotify at: https://open.spotify.com/playlist/3VGaCebHKvTCnLNdcnglbB?si=b610100948354a72', inline=False)
-    em.add_field(name='Apple Music ', value='Listen to the offical Relaxed Downtown playlist on Apple Music at: https://music.apple.com/ch/playlist/favourite-songs-of-relaxed-downtown/pl.u-PDb44aEILVBdexv', inline=False)
-    await ctx.send(embed=em)
-    print('Playlist command executed')
 
 # Music stuff
-
 ydl_opts = {
     'format': 'bestaudio/best',
     'postprocessors': [{
@@ -266,17 +176,6 @@ async def play(ctx, url):
 
     await ctx.send(f'**Music: **{url}') #sends info about song playing right now
 
-@client.command(pass_context=True)
-async def lofi(ctx):
-    if (ctx.author.voice):
-        channel = ctx.message.author.voice.channel
-        voice = await channel.connect()
-        source = FFmpegPCMAudio('Lofi.webm')
-        player = voice.play(source)
-        await ctx.send(f"The bot is now playing lofi in {channel}")
-    else:
-        await ctx.send("You are not in a voice channel.  Join one to run the command!")
-
 @client.command()
 async def leave(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
@@ -309,9 +208,6 @@ async def stop(ctx):
     voice = discord.utils.get(client.voice_clients, guild=ctx.guild)
     voice.stop()
 
-
-
-
 # Help command
 @client.group(invoke_without_command=True)
 async def help(ctx):
@@ -322,7 +218,7 @@ async def help(ctx):
     em.add_field(name="Fun", value="8ball, coinflip" )
     em.add_field(name="Images", value="dog, lizard" )
     em.add_field(name="Misc", value="invite, ping, about, workinprogress, playlist" )
-    em.add_field(name="Music", value="play, lofi, pause, resume, stop" )
+    em.add_field(name="Music", value="play, pause, resume, stop" )
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
     await ctx.send(embed=em)
@@ -459,16 +355,6 @@ async def play(ctx):
 
     await ctx.send(embed=em)
     print("Help play command has executed")
-
-@help.command()
-async def lofi(ctx):
-    em = discord.Embed(title = "Lofi", description="Plays a 2 hour long lofi flaylist in the voice channel that you are connected to", color=discord.Colour.purple())
-
-    em.add_field(name="**Syntax**", value="`.lofi`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-    await ctx.send(embed=em)
-    print("Help lofi command has executed")
 
 @help.command()
 async def pause(ctx):
