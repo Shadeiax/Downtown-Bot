@@ -60,11 +60,11 @@ async def help(ctx):
 
     em = discord.Embed(title="Help", description="Use .help <command> for extended information on a command", color=discord.Colour.purple())
 
-    em.add_field(name="Moderation", value="kick, ban")
+    em.add_field(name="Moderation", value="kick, ban, unban")
     em.add_field(name="Fun", value="8ball, coinflip" )
-    em.add_field(name="Images", value="dog, lizard" )
+    em.add_field(name="Images", value="dog, lizard, cat" )
     em.add_field(name="Misc", value="invite, ping, about, workinprogress, playlist" )
-    em.add_field(name="Music", value="play, pause, resume, stop" )
+    # em.add_field(name="Music", value="play, pause, resume, stop" )
     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
     await ctx.send(embed=em)
@@ -192,55 +192,55 @@ async def spotify(ctx):
     print("Help playlist command has executed")
 
 # Help music
-@help.command()
-async def play(ctx):
-    em = discord.Embed(title = "Play", description="Plays a specified YouTube video in the voice channel that you are connected to", color=discord.Colour.purple())
+# @help.command()
+# async def play(ctx):
+#     em = discord.Embed(title = "Play", description="Plays a specified YouTube video in the voice channel that you are connected to", color=discord.Colour.purple())
 
-    em.add_field(name="**Syntax**", value="`.play <url>`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+#     em.add_field(name="**Syntax**", value="`.play <url>`")
+#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
-    await ctx.send(embed=em)
-    print("Help play command has executed")
+#     await ctx.send(embed=em)
+#     print("Help play command has executed")
 
-@help.command()
-async def pause(ctx):
-    em = discord.Embed(title = "Pause", description="Pauses any currently playing music", color=discord.Colour.purple())
+# @help.command()
+# async def pause(ctx):
+#     em = discord.Embed(title = "Pause", description="Pauses any currently playing music", color=discord.Colour.purple())
 
-    em.add_field(name="**Syntax**", value="`.pause`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+#     em.add_field(name="**Syntax**", value="`.pause`")
+#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
-    await ctx.send(embed=em)
-    print("Help pause command has executed")
+#     await ctx.send(embed=em)
+#     print("Help pause command has executed")
 
-@help.command()
-async def resume(ctx):
-    em = discord.Embed(title = "Resume", description="Resumes any currently paused music", color=discord.Colour.purple())
+# @help.command()
+# async def resume(ctx):
+#     em = discord.Embed(title = "Resume", description="Resumes any currently paused music", color=discord.Colour.purple())
 
-    em.add_field(name="**Syntax**", value="`.resume`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+#     em.add_field(name="**Syntax**", value="`.resume`")
+#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
-    await ctx.send(embed=em)
-    print("Help resume command has executed")
+#     await ctx.send(embed=em)
+#     print("Help resume command has executed")
 
-@help.command()
-async def leave(ctx):
-    em = discord.Embed(title = "Leave", description="Disconnects the bot from the current voice channel", color=discord.Colour.purple())
+# @help.command()
+# async def leave(ctx):
+#     em = discord.Embed(title = "Leave", description="Disconnects the bot from the current voice channel", color=discord.Colour.purple())
 
-    em.add_field(name="**Syntax**", value="`.leave`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+#     em.add_field(name="**Syntax**", value="`.leave`")
+#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
-    await ctx.send(embed=em)
-    print("Help leave command has executed")
+#     await ctx.send(embed=em)
+#     print("Help leave command has executed")
 
-@help.command()
-async def stop(ctx):
-    em = discord.Embed(title = "Stop", description="Stops the currently playing song and deletes it from the qeue", color=discord.Colour.purple())
+# @help.command()
+# async def stop(ctx):
+#     em = discord.Embed(title = "Stop", description="Stops the currently playing song and deletes it from the qeue", color=discord.Colour.purple())
 
-    em.add_field(name="**Syntax**", value="`.stop`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+#     em.add_field(name="**Syntax**", value="`.stop`")
+#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
-    await ctx.send(embed=em)
-    print("Help stop command has executed")
+#     await ctx.send(embed=em)
+#     print("Help stop command has executed")
     
 @help.command()
 async def cat(ctx):
@@ -251,6 +251,19 @@ async def cat(ctx):
 
         await ctx.send(embed=em)
     
+# Help unban command
+@help.command()
+async def unban(ctx):
+    em = discord.Embed(title = "Unban", description="Unbans a member from the guild", color=discord.Colour.purple())
+
+    em.add_field(name="**Syntax**", value="`.unban <member>`")
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+
+    await ctx.send(embed=em)
+    print("Help unban command has executed")
+
+
+
 with open('token.txt') as f:
     TOKEN = f.readline()
 

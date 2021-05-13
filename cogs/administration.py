@@ -52,5 +52,18 @@ class Admin(commands.Cog):
 
         await ctx.send(embed=em)
 
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def unban(self, ctx, *, member):
+        banned_users = await ctx.guild.bans()
+        
+        member_name, member_discriminator = member.split('#')
+        for ban_entry in banned_users:
+            user = ban_entry.user
+            
+            if (user.name, user.discriminator) == (member_name, member_discriminator):
+                await ctx.guild.unban(user)
+                await ctx.channel.send(f"Unbanned: {user.mention}")
+
 def setup(client):
     client.add_cog(Admin(client))

@@ -70,7 +70,9 @@ class Image(commands.Cog):
                         'https://cdn.mos.cms.futurecdn.net/VSy6kJDNq2pSXsCzb6cvYF.jpg',
                         'https://c.files.bbci.co.uk/12A9B/production/_111434467_gettyimages-1143489763.jpg',
                         'https://static.scientificamerican.com/sciam/cache/file/92E141F8-36E4-4331-BB2EE42AC8674DD3_source.jpg',
-                        'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg'
+                        'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg',
+                        'https://cdn.discordapp.com/attachments/792593317547343922/841789289594617916/image0.jpg',
+                        'https://cdn.discordapp.com/attachments/792593317547343922/841789387754176552/image0.jpg'
                                                 ]
 
         em = discord.Embed(title = "Cat", description="", color=discord.Colour.purple())
