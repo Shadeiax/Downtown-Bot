@@ -52,6 +52,17 @@ class Event(commands.Cog):
             await after.edit(nick=f"🌟 {after.display_name}")
             await after.send("```Hey! You! Yeah You! 😎\n\nLets go you just reached the VIP Status on Relaxed Downtown! 💜 \nAnd Yes we have some Premium features on Relaxed Downtown for VIP users: \n \n-Hidden VIP Chats ⭐ (You can find the VIP category under the Minigames category) \n \n-You can now request a nickname! (The text channel for that can be found in the Support category) 🦋\n \n-Question Of The Day :question: (Can be found in the Off-Topic Category) \n \n-Color Roles (can be found in the category User info) ```")
 
+    # School's Out  VIP role 🌟
+    @commands.Cog.listener()
+    async def on_member_update(self, before, after):
+        role = after.guild.get_role(844281356094668880)
+        print(role, before.roles, after.roles, before.display_name, after.display_name)
+        if role in after.roles and role not in before.roles:
+            role = get(after.server.roles, name="Completed All Roles")
+            await after.edit(nick=f"🌟 {after.display_name}")
+            await after.send("```Hey! You! Yeah You! 😎\n\nLets go you just reached the VIP Status on Relaxed Downtown! 💜 \nAnd Yes we have some Premium features on Relaxed Downtown for VIP users: \n \n-Hidden VIP Chats ⭐ (You can find the VIP category under the Minigames category) \n \n-You can now request a nickname! (The text channel for that can be found in the Support category) 🦋\n \n-Question Of The Day :question: (Can be found in the Off-Topic Category) \n \n-Color Roles (can be found in the category User info) ```")
+            await after.add_roles(id="844281264667623426")
+
     @commands.Cog.listener()
     async def on_member_join(self, member):
         mention=member.mention
