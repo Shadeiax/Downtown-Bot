@@ -17,7 +17,7 @@ intents.members = True
 # Bot prefix
 client = commands.Bot(command_prefix = ".", intents=intents, case_insensitive=True)
 
-# Cogs
+# Import cogs
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
@@ -61,7 +61,7 @@ async def help(ctx):
     em = discord.Embed(title="Help", description="Use .help <command> for extended information on a command", color=discord.Colour.purple())
 
     em.add_field(name="Moderation", value="kick, ban, unban")
-    em.add_field(name="Fun", value="8ball, coinflip" )
+    em.add_field(name="Fun", value="8ball, coinflip., .randomfact" )
     em.add_field(name="Images", value="dog, lizard, cat" )
     em.add_field(name="Misc", value="invite, ping, about, workinprogress, playlist" )
     # em.add_field(name="Music", value="play, pause, resume, stop" )
@@ -190,57 +190,6 @@ async def spotify(ctx):
 
     await ctx.send(embed=em)
     print("Help playlist command has executed")
-
-# Help music
-# @help.command()
-# async def play(ctx):
-#     em = discord.Embed(title = "Play", description="Plays a specified YouTube video in the voice channel that you are connected to", color=discord.Colour.purple())
-
-#     em.add_field(name="**Syntax**", value="`.play <url>`")
-#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-#     await ctx.send(embed=em)
-#     print("Help play command has executed")
-
-# @help.command()
-# async def pause(ctx):
-#     em = discord.Embed(title = "Pause", description="Pauses any currently playing music", color=discord.Colour.purple())
-
-#     em.add_field(name="**Syntax**", value="`.pause`")
-#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-#     await ctx.send(embed=em)
-#     print("Help pause command has executed")
-
-# @help.command()
-# async def resume(ctx):
-#     em = discord.Embed(title = "Resume", description="Resumes any currently paused music", color=discord.Colour.purple())
-
-#     em.add_field(name="**Syntax**", value="`.resume`")
-#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-#     await ctx.send(embed=em)
-#     print("Help resume command has executed")
-
-# @help.command()
-# async def leave(ctx):
-#     em = discord.Embed(title = "Leave", description="Disconnects the bot from the current voice channel", color=discord.Colour.purple())
-
-#     em.add_field(name="**Syntax**", value="`.leave`")
-#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-#     await ctx.send(embed=em)
-#     print("Help leave command has executed")
-
-# @help.command()
-# async def stop(ctx):
-#     em = discord.Embed(title = "Stop", description="Stops the currently playing song and deletes it from the qeue", color=discord.Colour.purple())
-
-#     em.add_field(name="**Syntax**", value="`.stop`")
-#     em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
-#     await ctx.send(embed=em)
-#     print("Help stop command has executed")
     
 @help.command()
 async def cat(ctx):
@@ -262,8 +211,18 @@ async def unban(ctx):
     await ctx.send(embed=em)
     print("Help unban command has executed")
 
+# Help fact
+@help.command(aliases=['randomfact'])
+async def fact(ctx):
+    em = discord.Embed(title = "Unban", description="Displays a random fact from the #👽-random-facts in Relaxed Downtown!", color=discord.Colour.purple())
 
+    em.add_field(name="**Syntax**", value="`.fact/randomfact`")
+    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
+    await ctx.send(embed=em)
+    print("Help fact/randomfact command has executed")
+
+# Open and read token.txt
 with open('token.txt') as f:
     TOKEN = f.readline()
 

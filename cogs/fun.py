@@ -76,5 +76,24 @@ class Fun(commands.Cog):
 
         await ctx.send(embed=em)
 
+    @commands.command(aliases=['fact'])
+    async def randomfact(self, ctx):
+        responses = [
+                        "You're more likely to find a dead body under your bed rather than in a bin",
+                        'hippopotomonstrosesquipedaliophobia, the fear of long words',
+                        'It’s physically impossible to lick your elbow',
+                        'The odds of being fucked by a horse is low but not zero',
+                        'Apples give more energy than coffee',
+                        'The Turritopsis Dohrnii jellyfish is officially known as the only immortal creature in the world. It lives forever.',
+                        "More than 7000 people die annually due to the doctor's bad handwriting.",
+                        "There's a company that turns dead bodies into an ocean reef."]
+
+        em = discord.Embed(title = "Random Facts", description="", color=discord.Colour.purple())
+
+        em.add_field(name="**Fact**", value=f"{random.choice(responses)}", inline=False)
+        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+
+        await ctx.send(embed=em)
+
 def setup(client):
     client.add_cog(Fun(client))

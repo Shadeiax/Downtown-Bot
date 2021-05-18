@@ -56,7 +56,7 @@ class Event(commands.Cog):
     async def on_member_join(self, member):
         mention=member.mention
         guild=member.guild
-
+        
         em = discord.Embed(title=":warning:WARNING READ BEFORE JOINING THE SERVER!:warning:", description="Always be careful what data about yourself you disclose! There are bad people everywhere who pretend to be users of your age to harm you! Never give your exact location! And if you don't feel comfortable introducing yourself in our introduction channel then you don't have to do it! \n **The Downtown Team Is NOT Liable!**", color=discord.Colour.purple())
 
         em.set_thumbnail(url="http://relaxed-downtown.ml/img/ezgif-4-08d6e14f8d30.gif")
@@ -81,9 +81,6 @@ class Event(commands.Cog):
                 em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
 
                 await message.channel.send(embed=em)
-
-            else:
-                await ctx.process_commands(message)
 
 
 def setup(client):
