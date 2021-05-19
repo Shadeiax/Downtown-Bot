@@ -9,6 +9,7 @@ import nacl
 import youtube_dl
 from discord import FFmpegPCMAudio
 from discord.utils import get
+import datetime
 
 class Fun(commands.Cog):
     def __init__(self, client):
@@ -24,7 +25,8 @@ class Fun(commands.Cog):
     async def fping(self, ctx):
         em = discord.Embed(title="Fun Cog Ping", description="Ping!", color=discord.Colour.purple())
 
-        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
 
@@ -58,7 +60,8 @@ class Fun(commands.Cog):
 
         em.add_field(name="**Question**", value=f"{question}", inline=False)
         em.add_field(name="**Answer**", value=f"{random.choice(responses)}", inline=False)
-        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
 
@@ -72,7 +75,8 @@ class Fun(commands.Cog):
         em = discord.Embed(title = "Coinflip", description="", color=discord.Colour.purple())
 
         em.add_field(name="**Outcome**", value=f"{random.choice(responses)}", inline=False)
-        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
 
@@ -91,7 +95,8 @@ class Fun(commands.Cog):
         em = discord.Embed(title = "Random Facts", description="", color=discord.Colour.purple())
 
         em.add_field(name="**Fact**", value=f"{random.choice(responses)}", inline=False)
-        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
 

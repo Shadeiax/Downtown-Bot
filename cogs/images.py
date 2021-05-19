@@ -9,6 +9,7 @@ import nacl
 import youtube_dl
 from discord import FFmpegPCMAudio
 from discord.utils import get
+import datetime
 
 class Image(commands.Cog):
     def __init__(self, client):
@@ -24,7 +25,8 @@ class Image(commands.Cog):
     async def iping(self, ctx):
         em = discord.Embed(title="Image Cog Ping", description="Ping!", color=discord.Colour.purple())
 
-        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
 
@@ -42,7 +44,9 @@ class Image(commands.Cog):
         em = discord.Embed(title = "Lizard", description="", color=discord.Colour.purple())
 
         em.set_image(url=f"{random.choice(responses)}")
-
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
+        
         await ctx.send(embed=em)
     
     @commands.command(aliases=['doge'])
@@ -67,6 +71,8 @@ class Image(commands.Cog):
         em = discord.Embed(title = "Dog", description="", color=discord.Colour.purple())
 
         em.set_image(url=f"{random.choice(responses)}")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
 
@@ -89,6 +95,8 @@ class Image(commands.Cog):
         em = discord.Embed(title = "Cat", description="", color=discord.Colour.purple())
 
         em.set_image(url=f"{random.choice(responses)}")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
 

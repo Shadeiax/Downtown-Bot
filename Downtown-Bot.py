@@ -9,6 +9,7 @@ import nacl
 import youtube_dl
 from discord import FFmpegPCMAudio
 from discord.utils import get
+import datetime
 
 # Intents
 intents = discord.Intents.default()
@@ -48,8 +49,9 @@ async def ch_pr():
 @client.command(aliases=['ms'])
 async def ping(ctx):
     em = discord.Embed(title="Ping", description=f"The bot's ping is currently `{round(client.latency * 1000)}ms`", color=discord.Colour.purple())
-
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print('Ping/ms command has executed')
@@ -61,12 +63,13 @@ async def help(ctx):
     em = discord.Embed(title="Help", description="Use .help <command> for extended information on a command", color=discord.Colour.purple())
 
     em.add_field(name="Moderation", value="kick, ban, unban")
-    em.add_field(name="Fun", value="8ball, coinflip., .randomfact" )
+    em.add_field(name="Fun", value="8ball, coinflip, randomfact" )
     em.add_field(name="Images", value="dog, lizard, cat" )
     em.add_field(name="Misc", value="invite, ping, about, workinprogress, playlist" )
     # em.add_field(name="Music", value="play, pause, resume, stop" )
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
-
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
+    
     await ctx.send(embed=em)
     print('Help command has executed')
 
@@ -76,7 +79,8 @@ async def kick(ctx):
     em = discord.Embed(title = "Kick", description="Kicks a member from the guild", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.kick <member> [reason]`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help kick command has executed")
@@ -87,7 +91,8 @@ async def ban(ctx):
     em = discord.Embed(title = "Ban", description="Bans a member from the guild", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.ban <member> [reason]`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help ban command has executed")
@@ -98,7 +103,8 @@ async def ping(ctx):
     em = discord.Embed(title = "Ping/ms", description="Displays the current ping of the bot", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.ping/ms`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help ping/ms command has executed")
@@ -109,7 +115,8 @@ async def _8ball(ctx):
     em = discord.Embed(title = "8ball", description="Answers a question with a random 8ball answer!", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.8ball <question>`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help 8ball command has executed")
@@ -120,7 +127,8 @@ async def invite(ctx):
     em = discord.Embed(title = "Invite/link", description="Displays the invite link of Downtown Bot and Relaxed Downtown", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.invite/link`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help invite/link command has executed")
@@ -131,7 +139,8 @@ async def about(ctx):
     em = discord.Embed(title = "About", description="Displays the infomation about the bot", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.about`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help about command has executed")
@@ -142,7 +151,8 @@ async def workinprogress(ctx):
     em = discord.Embed(title = "Work In Progress", description="Displays the features that carter.py would like to add to the bot", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.workinprogress/wip`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help workinprogress/wip command has executed")
@@ -153,7 +163,8 @@ async def coinflip(ctx):
     em = discord.Embed(title = "Coinflip", description="Displays a randomized coinflip", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.coinflip/cf <prediction>`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help coinflip/cf command has executed")
@@ -164,7 +175,8 @@ async def dog(ctx):
     em = discord.Embed(title = "Dog", description="Displays a randomized dog image", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.dog/doge`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help dog/doge command has executed")
@@ -175,7 +187,8 @@ async def lizard(ctx):
     em = discord.Embed(title = "Lizard", description="Displays a randomized lizard image", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.lizard`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help lizard command has executed")
@@ -186,7 +199,8 @@ async def spotify(ctx):
     em = discord.Embed(title = "Playlists", description="Displays the links for the offical Relaxed Downtown music!", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.playlist`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help playlist command has executed")
@@ -196,7 +210,8 @@ async def cat(ctx):
         em = discord.Embed(title = "Cat", description="Displays a randomized cat image", color=discord.Colour.purple())
 
         em.add_field(name="**Syntax**", value="`.cat`")
-        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
     
@@ -206,7 +221,8 @@ async def unban(ctx):
     em = discord.Embed(title = "Unban", description="Unbans a member from the guild", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.unban <member>`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help unban command has executed")
@@ -217,7 +233,8 @@ async def fact(ctx):
     em = discord.Embed(title = "Unban", description="Displays a random fact from the #👽-random-facts in Relaxed Downtown!", color=discord.Colour.purple())
 
     em.add_field(name="**Syntax**", value="`.fact/randomfact`")
-    em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+    em.timestamp = datetime.datetime.utcnow()
+    em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
     await ctx.send(embed=em)
     print("Help fact/randomfact command has executed")

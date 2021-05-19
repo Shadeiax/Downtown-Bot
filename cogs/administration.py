@@ -9,6 +9,7 @@ import nacl
 import youtube_dl
 from discord import FFmpegPCMAudio
 from discord.utils import get
+import datetime
 
 class Admin(commands.Cog):
     def __init__(self, client):
@@ -24,7 +25,8 @@ class Admin(commands.Cog):
     async def aping(self, ctx):
         em = discord.Embed(title="Admin Cog Ping", description="Ping!", color=discord.Colour.purple())
 
-        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em) 
 
@@ -36,7 +38,8 @@ class Admin(commands.Cog):
 
         em = discord.Embed(title="Member Kicked", description=f"{member} was kicked for {reason}", color=discord.Colour.purple())
 
-        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
 
@@ -48,7 +51,8 @@ class Admin(commands.Cog):
 
         em = discord.Embed(title="Member Banned", description=f"{member} was banned for {reason}", color=discord.Colour.purple())
 
-        em.set_thumbnail(url="https://cdn.discordapp.com/avatars/834846536910897193/e8dd4276ccb10157dcf76f8222c9354c.png?size=256")
+        em.timestamp = datetime.datetime.utcnow()
+        em.set_footer(text="Downtown Bot", icon_url="https://raw.githubusercontent.com/carter-py/Downtown-Bot/main/Downtown-Bot-Logo.png")
 
         await ctx.send(embed=em)
 
