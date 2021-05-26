@@ -68,7 +68,27 @@ class Event(commands.Cog):
     #         await after.edit(nick=f"🌟 {after.display_name}")
     #         await after.send("```Hey! You! Yeah You! 😎\n\nLets go you just reached the VIP Status on Relaxed Downtown! 💜 \nAnd Yes we have some Premium features on Relaxed Downtown for VIP users: \n \n-Hidden VIP Chats ⭐ (You can find the VIP category under the Minigames category) \n \n-You can now request a nickname! (The text channel for that can be found in the Support category) 🦋\n \n-Question Of The Day :question: (Can be found in the Off-Topic Category) \n \n-Color Roles (can be found in the category User info) ```")
     #         await after.add_roles(role1)
-
+       
+    @commands.Cog.listener()
+    async def on_voice_state_update(Member, before, after):
+        #if lofi music bot leaves or joins a channel
+        if Member.id == 634818840542445580: #id of lofi music bot
+            try:                
+                #channel = Lofi Bar StageChannel
+                channel = Member.guild.get_channel(844312863673548800)
+                #if the channel lofi music bot joined is the Lofi Bar StageChannel
+                if after.channel.id == channel.id:
+                    #rename 
+                    await channel.edit(name="🍸 Lofi Bar")
+                else:
+                    #rename
+                    await channel.edit(name="Lofi Bar [closed]")
+            #exception bc if lofi music bot leaves after == Null
+            except:
+                print("User is not connected to a Channel rn")
+                    
+       
+     
     @commands.Cog.listener()
     async def on_member_join(self, member):
         mention=member.mention
